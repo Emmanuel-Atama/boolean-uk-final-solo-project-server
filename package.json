@@ -4,7 +4,8 @@
   "description": "Upstream for final solo projects",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon dist/app.js"
+    "start": "nodemon src/app.ts",
+    "seed": "nodemon src/utils/seed.ts"
   },
   "repository": {
     "type": "git",
@@ -31,8 +32,5 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "^1.10.0"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.ts"
   }
 }
