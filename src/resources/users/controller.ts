@@ -58,8 +58,6 @@ export async function getAll(req: Request, res: Response, next: NextFunction) {
         },
       });
 
-
-
       const token = jwt.sign(
         {id: user.id, email: user.email},
         process.env.JWT_SECRETE as string,

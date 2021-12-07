@@ -6,13 +6,42 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
+  id       Int              @id @default(autoincrement())
+  email    String           @unique
   password String
+  profile  Profile?
+  hobbies  HobbiesOnUsers[]
+}
+
+model Profile {
+  id        Int    @id @default(autoincrement())
+  username  String
+  city      String
+  area      String
+  sexuality String
+  User      User   @relation(fields: [userId], references: [id])
+  userId    Int    @unique
+}
+
+model Hobby {
+  id    Int              @id @default(autoincrement())
+  names String
+  users HobbiesOnUsers[]
+}
+
+model HobbiesOnUsers {
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  hobby      Hobby    @relation(fields: [hobbyId], references: [id])
+  hobbyId    Int
+  assignedAt DateTime @default(now())
+  assignedBy String
+
+  @@id([userId, hobbyId])
 }
