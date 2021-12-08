@@ -9,6 +9,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const router_1 = __importDefault(require("./resources/users/router"));
 const router_2 = __importDefault(require("./resources/profile/router"));
+const router_3 = __importDefault(require("./resources/hobby/router"));
 // load the environment variables from the .env file
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -21,6 +22,7 @@ app.use((0, morgan_1.default)("dev"));
 /* SETUP ROUTES */
 app.use("/users", router_1.default);
 app.use("/profile", router_2.default);
+app.use("/hobby", router_3.default);
 app.get("*", (req, res) => {
     res.json({ Test: true });
 });
