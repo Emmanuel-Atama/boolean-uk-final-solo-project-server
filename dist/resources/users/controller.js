@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.login = exports.register = exports.getOneById = exports.getAll = void 0;
+exports.deleteUser = exports.login = exports.register = exports.getOneById = exports.getAll = void 0;
 const dbClient_1 = __importDefault(require("../../utils/dbClient"));
 const client_1 = require(".prisma/client");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -22,7 +22,11 @@ function getAll(req, res, next) {
         console.log("Inside getAll", getAll);
         try {
             const users = yield dbClient_1.default.user
-                .findMany({});
+                .findMany({
+                include: {
+                    profile: true
+                }
+            });
             res.json(users);
         }
         catch (error) {
@@ -51,7 +55,17 @@ function getOneById(req, res, next) {
 exports.getOneById = getOneById;
 function register(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const userToCreate = Object.assign({}, req.body);
+        const { email, password, username, gender, city, area, sexuality } = req.body;
+        console.log("Request Body: ", req.body);
+        const userToCreate = {
+            email,
+            password,
+            // username,
+            // gender,
+            // city,
+            // area,
+            // sexuality
+        };
         if (!userToCreate.email || !userToCreate.password) {
             res.status(400).json({ error: "Missing email or password." });
         }
@@ -63,7 +77,15 @@ function register(req, res, next) {
         try {
             //Use brcypt to hash password on DB before storing it
             const user = yield dbClient_1.default.user.create({
-                data: Object.assign(Object.assign({}, userToCreate), { password: hashedPassword }),
+                data: Object.assign(Object.assign({}, userToCreate), { password: hashedPassword, profile: {
+                        create: {
+                            username: req.body.username,
+                            gender: req.body.gender,
+                            city: req.body.city,
+                            area: req.body.area,
+                            sexuality: req.body.sexuality,
+                        },
+                    } }),
             });
             const token = jsonwebtoken_1.default.sign({ id: user.id, email: user.email }, process.env.JWT_SECRETE, { expiresIn: "1hr" });
             res.status(201).json({ token });
@@ -117,3 +139,20 @@ function login(req, res, next) {
 }
 exports.login = login;
 ;
+function deleteUser(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const targetId = parseInt(req.params.id);
+        try {
+            const userToDelete = yield dbClient_1.default.user.delete({
+                where: {
+                    id: targetId,
+                }
+            });
+            res.json({ userToDelete });
+        }
+        catch (error) {
+            res.status(500).json({ message: "Delete successful" });
+        }
+    });
+}
+exports.deleteUser = deleteUser;
