@@ -2,7 +2,8 @@ import express, { Request, Response } from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
-import router from './resources/users/router';
+import router from './resources/users/router'
+import routerProfile from './resources/profile/router'
 
 // load the environment variables from the .env file
 dotenv.config();
@@ -18,6 +19,7 @@ app.use(morgan("dev"));
 
 /* SETUP ROUTES */
 app.use("/users", router)
+app.use("/profile", routerProfile)
 
 app.get("*", (req: Request, res:Response) => {
     res.json({ Test: true });

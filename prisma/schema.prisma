@@ -22,11 +22,12 @@ model User {
 model Profile {
   id        Int    @id @default(autoincrement())
   username  String
+  gender    String
   city      String
   area      String
   sexuality String
-  User      User   @relation(fields: [userId], references: [id])
-  userId    Int    @unique
+  User      User?  @relation(fields: [userId], references: [id])
+  userId    Int?   @unique
 }
 
 model Hobby {
