@@ -9,4 +9,5 @@ const routerProfile = express_1.default.Router();
 routerProfile.get("/", controller_1.getAllProfile);
 routerProfile.get("/:id", controller_1.getOneProfileById);
 routerProfile.put("/:id", controller_1.updateProfile);
+routerProfile.delete("/:id", controller_1.deleteProfile);
 exports.default = routerProfile;

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProfile = exports.getOneProfileById = exports.getAllProfile = void 0;
+exports.deleteProfile = exports.updateProfile = exports.getOneProfileById = exports.getAllProfile = void 0;
 const dbClient_1 = __importDefault(require("../../utils/dbClient"));
 function getAllProfile(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -67,3 +67,20 @@ function updateProfile(req, res, next) {
     });
 }
 exports.updateProfile = updateProfile;
+function deleteProfile(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const targetId = parseInt(req.params.id);
+        try {
+            const profileToDelete = yield dbClient_1.default.profile.delete({
+                where: {
+                    id: targetId,
+                }
+            });
+            res.json({ profileToDelete });
+        }
+        catch (error) {
+            res.status(500).json({ message: "Delete successful" });
+        }
+    });
+}
+exports.deleteProfile = deleteProfile;

@@ -47,3 +47,17 @@ sexuality: req.body.sexuality,
     res.status(500).json({ error });
   }
   }
+
+  export async function deleteProfile(req: Request, res: Response, next: NextFunction) {
+    const targetId = parseInt(req.params.id)
+    try {
+      const profileToDelete = await prisma.profile.delete({
+        where: {
+          id: targetId,
+        }
+      })
+      res.json({profileToDelete})
+    } catch (error) {
+      res.status(500).json({message: "Delete successful"})
+    }
+  }
