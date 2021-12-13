@@ -44,11 +44,6 @@ console.log("Request Body: ", req.body)
   const userToCreate = {
     email,
     password,
-    // username,
-    // gender,
-    // city,
-    // area,
-    // sexuality
   };
 
 
@@ -158,4 +153,8 @@ export async function deleteUser(req: Request, res: Response, next: NextFunction
   } catch (error) {
     res.status(500).json({message: "Delete successful"})
   }
+}
+
+export async function GetPotentialDates(req: Request, res: Response, next: NextFunction) {
+//   const currentUser
 }

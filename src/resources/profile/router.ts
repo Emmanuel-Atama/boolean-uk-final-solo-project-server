@@ -1,11 +1,11 @@
 import express from "express";
 import { deleteProfile, getAllProfile, getOneProfileById, updateProfile } from "./controller";
 
-const routerProfile = express.Router()
+const profileRouter = express.Router()
 
-routerProfile.get("/", getAllProfile)
-routerProfile.get("/:id", getOneProfileById)
-routerProfile.put("/:id", updateProfile)
-routerProfile.delete("/:id", deleteProfile)
+profileRouter.get("/", getAllProfile)
+profileRouter.get("/:id", getOneProfileById)
+profileRouter.put("/:id", updateProfile)
+profileRouter.delete("/:id", deleteProfile)
 
-export default routerProfile
+export default profileRouter

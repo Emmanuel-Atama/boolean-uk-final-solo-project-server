@@ -1,12 +1,12 @@
 import express from "express";
 import {  deleteUser, getAll, getOneById, login, register } from "./controller";
 
-const router = express.Router()
+const usersRouter = express.Router()
 
-router.get("/", getAll)
-router.get("/:id", getOneById)
-router.post("/", register)
-router.post("/login", login)
-router.delete("/:id", deleteUser)
+usersRouter.get("/", getAll)
+usersRouter.get("/:id", getOneById)
+usersRouter.post("/", register)
+usersRouter.post("/login", login)
+usersRouter.delete("/:id", deleteUser)
 
-export default router
+export default usersRouter
