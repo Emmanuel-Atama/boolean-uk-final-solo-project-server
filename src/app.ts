@@ -5,7 +5,9 @@ import dotenv from 'dotenv'
 import usersRouter from './resources/users/router'
 import profileRouter from './resources/profile/router'
 import hobbyRouter from './resources/hobby/router'
-import matchRouter from './resources/match/router'
+import registerRouter from './resources/register/router'
+import loginRouter from './resources/login/router'
+// import matchRouter from './resources/match/router'
 
 // load the environment variables from the .env file
 dotenv.config();
@@ -21,9 +23,11 @@ app.use(morgan("dev"));
 
 /* SETUP ROUTES */
 app.use("/users", usersRouter)
+app.use("register", registerRouter)
+app.use("login", loginRouter)
 app.use("/profile", profileRouter)
 app.use("/hobby", hobbyRouter)
-app.use("/match", matchRouter)
+// app.use("/match", matchRouter)
 
 app.get("*", (req: Request, res:Response) => {
     res.json({ Test: true });

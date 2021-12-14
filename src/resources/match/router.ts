@@ -1,5 +1,8 @@
-import express  from "express";
+// import express  from "express";
+// import { getPotentialMatches } from "./controller";
 
-const matchRouter = express.Router()
+// const matchRouter = express.Router()
 
-export default matchRouter
+// matchRouter.get("/", getPotentialMatches)
+
+// export default matchRouter
