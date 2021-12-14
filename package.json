@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon src/app.ts",
     "seed": "nodemon src/utils/seed.ts",
-    "production-start": "nodemon src/app.ts"
+    "production-start": "node src/app.ts"
   },
   "repository": {
     "type": "git",
