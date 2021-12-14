@@ -51,6 +51,7 @@ export async function register(req: Request, res: Response, next: NextFunction) 
       );
       res.status(201).json({ token });
     } catch (error) {
+      console.error(error)
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === "P2002") {
           res.status(501).json({

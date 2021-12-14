@@ -23,8 +23,8 @@ app.use(morgan("dev"));
 
 /* SETUP ROUTES */
 app.use("/users", usersRouter)
-app.use("register", registerRouter)
-app.use("login", loginRouter)
+app.use("/register", registerRouter)
+app.use("/login", loginRouter)
 app.use("/profile", profileRouter)
 app.use("/hobby", hobbyRouter)
 // app.use("/match", matchRouter)

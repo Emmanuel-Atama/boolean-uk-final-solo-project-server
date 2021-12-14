@@ -24,8 +24,8 @@ app.use(express_1.default.urlencoded({ extended: false }));
 app.use((0, morgan_1.default)("dev"));
 /* SETUP ROUTES */
 app.use("/users", router_1.default);
-app.use("register", router_4.default);
-app.use("login", router_5.default);
+app.use("/register", router_4.default);
+app.use("/login", router_5.default);
 app.use("/profile", router_2.default);
 app.use("/hobby", router_3.default);
 // app.use("/match", matchRouter)

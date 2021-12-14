@@ -50,6 +50,7 @@ function register(req, res, next) {
             res.status(201).json({ token });
         }
         catch (error) {
+            console.error(error);
             if (error instanceof client_1.Prisma.PrismaClientKnownRequestError) {
                 if (error.code === "P2002") {
                     res.status(501).json({
