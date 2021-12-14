@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/app.ts",
-    "seed": "nodemon src/utils/seed.ts"
+    "seed": "nodemon src/utils/seed.ts",
+    "productio-start": "nodemon src/app.ts"
   },
   "repository": {
     "type": "git",
@@ -23,11 +24,11 @@
     "@types/morgan": "^1.9.3",
     "@types/node": "^16.11.11",
     "nodemon": "^2.0.15",
-    "prisma": "^3.6.0",
     "typescript": "^4.5.2"
   },
   "dependencies": {
     "@prisma/client": "^3.6.0",
+    "prisma": "^3.6.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
