@@ -5,6 +5,7 @@ import bcrypt from "bcrypt"
 
 
 export async function login(req: Request, res: Response, next: NextFunction) {
+  console.log("Inside login function:", req.body)
     const userCredentials = {
       ...req.body,
     };
@@ -43,7 +44,7 @@ export async function login(req: Request, res: Response, next: NextFunction) {
         }
       }
     } catch (error) {
+      console.error(error)
       res.status(500).json({ error });
     }
   };
-  
