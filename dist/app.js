@@ -12,6 +12,7 @@ const router_2 = __importDefault(require("./resources/profile/router"));
 const router_3 = __importDefault(require("./resources/hobby/router"));
 const router_4 = __importDefault(require("./resources/register/router"));
 const router_5 = __importDefault(require("./resources/login/router"));
+const router_6 = __importDefault(require("./resources/usersRequest/router"));
 // import matchRouter from './resources/match/router'
 // load the environment variables from the .env file
 dotenv_1.default.config();
@@ -28,11 +29,12 @@ app.use("/register", router_4.default);
 app.use("/login", router_5.default);
 app.use("/profile", router_2.default);
 app.use("/hobby", router_3.default);
-// app.use("/match", matchRouter)
+app.use("/usersRequest", router_6.default);
 app.get("*", (req, res) => {
     res.json({ Test: true });
 });
 // make server listen on some port
-((port = process.env.APP_PORT || 4000) => {
-    app.listen(port, () => console.log(`\n🚀 Server is running on http://localhost:${port}/\n`));
-})();
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+    console.log(`\n🚀 Server is running on http://localhost:${port}/\n`);
+});

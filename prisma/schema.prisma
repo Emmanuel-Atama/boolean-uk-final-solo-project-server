@@ -12,12 +12,13 @@ datasource db {
 }
 
 model User {
-  id       Int              @id @default(autoincrement())
-  email    String           @unique
-  password String
-  profile  Profile?
-  hobbies  HobbiesOnUsers[]
-
+  id              Int              @id @default(autoincrement())
+  email           String           @unique
+  password        String
+  profile         Profile?
+  hobbies         HobbiesOnUsers[]
+  sentRequest     UsersOnUsers[]   @relation("sender")
+  receivedRequest UsersOnUsers[]   @relation("receiver")
 }
 
 model Profile {
@@ -51,6 +52,8 @@ model HobbiesOnUsers {
 model UsersOnUsers {
   id         Int     @id @default(autoincrement())
   senderId   Int
+  sender     User?   @relation("sender", fields: [senderId], references: [id])
   receiverId Int
-  accepted   Boolean
+  receiver   User?   @relation("receiver", fields: [receiverId], references: [id])
+  accepted   Boolean @default(false)
 }

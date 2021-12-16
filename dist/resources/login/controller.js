@@ -18,6 +18,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 function login(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log("Inside login function:", req.body);
         const userCredentials = Object.assign({}, req.body);
         if (!userCredentials.email || !userCredentials.password) {
             res.status(400).json({ error: "Missing email or password." });
@@ -44,6 +45,7 @@ function login(req, res, next) {
             }
         }
         catch (error) {
+            console.error(error);
             res.status(500).json({ error });
         }
     });

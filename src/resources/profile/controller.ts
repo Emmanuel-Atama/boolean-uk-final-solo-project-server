@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { request } from "http";
 import prisma from "../../utils/dbClient"
 
 
@@ -13,6 +14,28 @@ export async function getAllProfile(req: Request, res: Response, next: NextFunct
 
   }
 }
+
+export async function getMyProfile(req: Request, res: Response, next: NextFunction) {
+  console.log("Inside getAll", getMyProfile)
+  try {
+    const userProfile = await prisma.user.findUnique({
+      where: {
+        id: 1,
+      },
+      include: {
+        profile:true,
+        sentRequest:true,
+        receivedRequest:true,
+      }
+    })
+
+    res.json(userProfile)
+  } catch (error) {
+    res.status(500).json({ error });
+
+  }
+}
+
 export async function getOneProfileById(req: Request, res: Response, next: NextFunction) {
   const userId = parseInt(req.params.id);
   try {
