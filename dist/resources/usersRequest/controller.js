@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendRequest = exports.getAll = void 0;
+exports.deleteUserRequest = exports.sendRequest = exports.getAll = void 0;
 const dbClient_1 = __importDefault(require("../../utils/dbClient"));
 function getAll(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -33,7 +33,7 @@ function sendRequest(req, res, next) {
         try {
             const usersReq = yield dbClient_1.default.usersOnUsers.create({
                 data: {
-                    senderId: 5,
+                    senderId: 9,
                     receiverId: req.body.receiverId,
                 }
             });
@@ -45,3 +45,20 @@ function sendRequest(req, res, next) {
     });
 }
 exports.sendRequest = sendRequest;
+function deleteUserRequest(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const targetId = parseInt(req.params.id);
+        try {
+            const profileToDelete = yield dbClient_1.default.usersOnUsers.delete({
+                where: {
+                    id: targetId,
+                }
+            });
+            res.json({ profileToDelete });
+        }
+        catch (error) {
+            res.status(500).json({ message: "Delete successful" });
+        }
+    });
+}
+exports.deleteUserRequest = deleteUserRequest;

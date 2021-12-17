@@ -8,4 +8,5 @@ const controller_1 = require("./controller");
 const usersRequestRouter = express_1.default.Router();
 usersRequestRouter.get("/", controller_1.getAll);
 usersRequestRouter.post("/", controller_1.sendRequest);
+usersRequestRouter.delete("/:id", controller_1.deleteUserRequest);
 exports.default = usersRequestRouter;

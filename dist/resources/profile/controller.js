@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProfile = exports.updateProfile = exports.getOneProfileById = exports.getAllProfile = void 0;
+exports.deleteProfile = exports.updateProfile = exports.getOneProfileById = exports.getMyProfile = exports.getAllProfile = void 0;
 const dbClient_1 = __importDefault(require("../../utils/dbClient"));
 function getAllProfile(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -27,6 +27,28 @@ function getAllProfile(req, res, next) {
     });
 }
 exports.getAllProfile = getAllProfile;
+function getMyProfile(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        console.log("Inside getAll", getMyProfile);
+        try {
+            const userProfile = yield dbClient_1.default.user.findUnique({
+                where: {
+                    id: 1,
+                },
+                include: {
+                    profile: true,
+                    sentRequest: true,
+                    receivedRequest: true,
+                }
+            });
+            res.json(userProfile);
+        }
+        catch (error) {
+            res.status(500).json({ error });
+        }
+    });
+}
+exports.getMyProfile = getMyProfile;
 function getOneProfileById(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const userId = parseInt(req.params.id);
