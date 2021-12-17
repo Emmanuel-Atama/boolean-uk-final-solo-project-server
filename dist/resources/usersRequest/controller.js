@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUserRequest = exports.sendRequest = exports.getAll = void 0;
+exports.deleteUserRequest = exports.updateOneById = exports.sendRequest = exports.getAll = void 0;
 const dbClient_1 = __importDefault(require("../../utils/dbClient"));
 function getAll(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -45,6 +45,26 @@ function sendRequest(req, res, next) {
     });
 }
 exports.sendRequest = sendRequest;
+function updateOneById(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { senderId, receiverId, accepted } = req.body;
+        try {
+            const updateRequest = yield dbClient_1.default.usersOnUsers.update({
+                where: {
+                    id: parseInt(req.params.id)
+                },
+                data: Object.assign(Object.assign({}, req.body), { senderId,
+                    receiverId,
+                    accepted })
+            });
+            res.json([updateRequest.senderId, updateRequest.receiverId, updateRequest.accepted]);
+        }
+        catch (error) {
+            res.status(500).json({ error });
+        }
+    });
+}
+exports.updateOneById = updateOneById;
 function deleteUserRequest(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const targetId = parseInt(req.params.id);

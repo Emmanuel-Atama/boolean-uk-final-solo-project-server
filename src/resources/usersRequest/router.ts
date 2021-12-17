@@ -1,11 +1,13 @@
 import express from "express";
-import { deleteUserRequest, getAll, sendRequest } from "./controller";
+import { getAll, sendRequest, updateOneById, deleteUserRequest } from "./controller";
 
 const usersRequestRouter = express.Router()
 
 usersRequestRouter.get("/", getAll)
 
 usersRequestRouter.post("/", sendRequest)
+
+usersRequestRouter.put("/:id", updateOneById)
 
 usersRequestRouter.delete("/:id", deleteUserRequest)
 

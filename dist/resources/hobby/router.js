@@ -9,5 +9,6 @@ const hobbyRouter = express_1.default.Router();
 hobbyRouter.post("/", controller_1.createHobby);
 hobbyRouter.get("/", controller_1.getAll);
 hobbyRouter.get("/:id", controller_1.getOneById);
+hobbyRouter.put("/:id", controller_1.updateOneById);
 hobbyRouter.delete("/:id", controller_1.deleteHobby);
 exports.default = hobbyRouter;

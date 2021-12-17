@@ -26,6 +26,27 @@ export async function sendRequest(req: Request, res: Response, next: NextFunctio
   
     }
   }
+
+  export async function updateOneById(req: Request, res: Response, next: NextFunction) {
+    const { senderId, receiverId, accepted } =req.body
+    try {
+      const updateRequest = await prisma.usersOnUsers.update({
+        where: {
+          id: parseInt(req.params.id)
+        },
+        data: {
+          ...req.body,
+          senderId,
+          receiverId, 
+          accepted,
+        }
+      })
+      res.json([updateRequest.senderId, updateRequest.receiverId, updateRequest.accepted])
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
+
   export async function deleteUserRequest(req: Request, res: Response, next: NextFunction) {
     const targetId = parseInt(req.params.id)
     try {

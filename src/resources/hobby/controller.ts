@@ -45,6 +45,24 @@ export async function getAll(req: Request, res: Response, next: NextFunction) {
     }
   }
 
+  export async function updateOneById(req: Request, res: Response, next: NextFunction) {
+const { names } =req.body
+try {
+  const updateHobby = await prisma.hobby.update({
+    where: {
+      id: parseInt(req.params.id)
+    },
+    data: {
+      ...req.body,
+      names
+    }
+  })
+  res.json(updateHobby.names)
+} catch (error) {
+  res.status(500).json({ error });
+}
+  }
+
   export async function deleteHobby(req: Request, res: Response, next: NextFunction) {
     const targetId = parseInt(req.params.id)
     try {

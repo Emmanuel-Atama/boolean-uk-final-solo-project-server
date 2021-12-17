@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteHobby = exports.getOneById = exports.getAll = exports.createHobby = void 0;
+exports.deleteHobby = exports.updateOneById = exports.getOneById = exports.getAll = exports.createHobby = void 0;
 const dbClient_1 = __importDefault(require("../../utils/dbClient"));
 function createHobby(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -63,6 +63,24 @@ function getOneById(req, res, next) {
     });
 }
 exports.getOneById = getOneById;
+function updateOneById(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { names } = req.body;
+        try {
+            const updateHobby = yield dbClient_1.default.hobby.update({
+                where: {
+                    id: parseInt(req.params.id)
+                },
+                data: Object.assign(Object.assign({}, req.body), { names })
+            });
+            res.json(updateHobby.names);
+        }
+        catch (error) {
+            res.status(500).json({ error });
+        }
+    });
+}
+exports.updateOneById = updateOneById;
 function deleteHobby(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const targetId = parseInt(req.params.id);
