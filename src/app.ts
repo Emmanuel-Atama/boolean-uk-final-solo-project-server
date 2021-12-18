@@ -9,7 +9,6 @@ import registerRouter from './resources/register/router'
 import loginRouter from './resources/login/router'
 import usersRequestRouter from './resources/usersRequest/router'
 import imagesRouter from './resources/images/router'
-// import matchRouter from './resources/match/router'
 
 // load the environment variables from the .env file
 dotenv.config();
