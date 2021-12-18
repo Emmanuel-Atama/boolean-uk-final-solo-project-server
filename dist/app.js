@@ -13,6 +13,7 @@ const router_3 = __importDefault(require("./resources/hobby/router"));
 const router_4 = __importDefault(require("./resources/register/router"));
 const router_5 = __importDefault(require("./resources/login/router"));
 const router_6 = __importDefault(require("./resources/usersRequest/router"));
+const router_7 = __importDefault(require("./resources/images/router"));
 // import matchRouter from './resources/match/router'
 // load the environment variables from the .env file
 dotenv_1.default.config();
@@ -30,6 +31,7 @@ app.use("/login", router_5.default);
 app.use("/profile", router_2.default);
 app.use("/hobby", router_3.default);
 app.use("/usersRequest", router_6.default);
+app.use("/images", router_7.default);
 app.get("*", (req, res) => {
     res.json({ Test: true });
 });

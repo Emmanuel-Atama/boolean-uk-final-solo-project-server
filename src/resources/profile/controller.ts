@@ -1,12 +1,15 @@
 import { NextFunction, Request, Response } from "express";
-import { request } from "http";
 import prisma from "../../utils/dbClient"
 
 
 export async function getAllProfile(req: Request, res: Response, next: NextFunction) {
   console.log("Inside getAll", getAllProfile)
   try {
-    const userProfile = await prisma.profile.findMany({})
+    const userProfile = await prisma.profile.findMany({
+      include: {
+        Images: true,
+      }
+    })
 
     res.json(userProfile)
   } catch (error) {

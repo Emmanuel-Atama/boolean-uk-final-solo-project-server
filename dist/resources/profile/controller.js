@@ -18,7 +18,11 @@ function getAllProfile(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log("Inside getAll", getAllProfile);
         try {
-            const userProfile = yield dbClient_1.default.profile.findMany({});
+            const userProfile = yield dbClient_1.default.profile.findMany({
+                include: {
+                    Images: true,
+                }
+            });
             res.json(userProfile);
         }
         catch (error) {

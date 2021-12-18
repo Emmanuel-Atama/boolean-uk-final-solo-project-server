@@ -8,6 +8,7 @@ import hobbyRouter from './resources/hobby/router'
 import registerRouter from './resources/register/router'
 import loginRouter from './resources/login/router'
 import usersRequestRouter from './resources/usersRequest/router'
+import imagesRouter from './resources/images/router'
 // import matchRouter from './resources/match/router'
 
 // load the environment variables from the .env file
@@ -29,6 +30,7 @@ app.use("/login", loginRouter)
 app.use("/profile", profileRouter)
 app.use("/hobby", hobbyRouter)
 app.use("/usersRequest", usersRequestRouter)
+app.use("/images", imagesRouter)
 
 
 app.get("*", (req: Request, res:Response) => {
