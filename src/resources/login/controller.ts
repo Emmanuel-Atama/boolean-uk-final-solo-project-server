@@ -5,7 +5,7 @@ import bcrypt from "bcrypt"
 import { AuthenticatedRequest } from "./AuthenticatedRequest";
 
 export async function login(req: Request, res: Response, next: NextFunction) {
-  console.log("Inside login function:", req.body)
+  // console.log("Inside login function:", req.body)
     const userCredentials = {
       ...req.body,
     };
@@ -27,10 +27,10 @@ export async function login(req: Request, res: Response, next: NextFunction) {
           user.password
         );
   
-        console.log({
-          passwordFromRequest: userCredentials.password,
-          passwordFromDatabase: user.password,
-        });
+        // console.log({
+        //   passwordFromRequest: userCredentials.password,
+        //   passwordFromDatabase: user.password,
+        // });
   
         if (match) {
           const token = jwt.sign(
@@ -50,7 +50,7 @@ export async function login(req: Request, res: Response, next: NextFunction) {
   };
 
   export async function protect(req: AuthenticatedRequest, res: Response, next: NextFunction) {
-  console.log("INSIDE MIDDLEWARE: ", { headers: req.headers })
+  // console.log("INSIDE MIDDLEWARE: ", { headers: req.headers })
 
   const token: string = req.headers.authorization as string
 

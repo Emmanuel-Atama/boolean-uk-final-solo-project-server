@@ -3,7 +3,7 @@ import prisma from "../../utils/dbClient"
 
 
 export async function getAllImages(req: Request, res: Response, next: NextFunction) {
-  console.log("Inside getAll", getAllImages)
+  // console.log("Inside getAll", getAllImages)
   try {
     const userImage = await prisma.images.findMany({
         include: {

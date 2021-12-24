@@ -3,7 +3,7 @@ import prisma from "../../utils/dbClient"
 
 
 export async function getAllProfile(req: Request, res: Response, next: NextFunction) {
-  console.log("Inside getAll", getAllProfile)
+  // console.log("Inside getAll", getAllProfile)
   try {
     const userProfile = await prisma.profile.findMany({
       include: {
@@ -19,7 +19,7 @@ export async function getAllProfile(req: Request, res: Response, next: NextFunct
 }
 
 export async function getMyProfile(req: Request, res: Response, next: NextFunction) {
-  console.log("Inside getAll", getMyProfile)
+  // console.log("Inside getAll", getMyProfile)
   try {
     const userProfile = await prisma.user.findUnique({
       where: {

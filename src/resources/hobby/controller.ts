@@ -4,7 +4,7 @@ import prisma from "../../utils/dbClient"
 export async function createHobby(req: Request, res: Response, next: NextFunction) {
 const { name } = req.body
 
-console.log("Request Body: ", req.body)
+// console.log("Request Body: ", req.body)
 
 try {
     const hobbies = await prisma.hobby.create({
@@ -19,7 +19,7 @@ data: {
 }
 
 export async function getAll(req: Request, res: Response, next: NextFunction) {
-    console.log("Inside getAll", getAll)
+    // console.log("Inside getAll", getAll)
     try {
       const users = await prisma.hobby.findMany({})
   
@@ -40,7 +40,7 @@ export async function getAll(req: Request, res: Response, next: NextFunction) {
       });
       res.json(userData);
     } catch (error) {
-      console.error("[ERROR] getAll: ", { error });
+      // console.error("[ERROR] getAll: ", { error });
       res.status(500).json({ error });
     }
   }

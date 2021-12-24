@@ -5,9 +5,9 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 
 export async function register(req: Request, res: Response, next: NextFunction) {
-    const { email, password, username, gender, city, area, sexuality } = req.body
+    const { email, password } = req.body
   
-  console.log("Request Body: ", req.body)
+  // console.log("Request Body: ", req.body)
   
     const userToCreate = {
       email,

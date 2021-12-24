@@ -2,7 +2,7 @@ import prisma from "../../utils/dbClient";
 import { NextFunction, Request, Response } from "express";
 
 export async function getAll(req: Request, res: Response, next: NextFunction) {
-  console.log("Inside getAll", getAll)
+  // console.log("Inside getAll", getAll)
   try {
     const users = await prisma.user
       .findMany({
