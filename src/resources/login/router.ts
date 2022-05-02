@@ -5,5 +5,4 @@ const loginRouter = express.Router()
 
 loginRouter.post("/", login)
 
-
 export default loginRouter
